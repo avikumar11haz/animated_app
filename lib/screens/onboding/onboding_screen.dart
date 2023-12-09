@@ -53,7 +53,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Column(
                     children: [
                       Text(
-                        "Learn design & code",
+                        "Learn design & codes",
                         style: TextStyle(
                           fontSize: 60,
                           fontFamily: "Poppins",
