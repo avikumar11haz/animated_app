@@ -1,7 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
+
+import 'components/animated_btn.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -41,14 +42,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Positioned.fill(
               child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
-            child: SizedBox(),
+            child: const SizedBox(),
           )),
           SafeArea(
               child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const Spacer(),
+                const SizedBox(
                   width: 260,
                   child: Column(
                     children: [
@@ -60,13 +63,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           height: 1.2,
                         ),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 16,
                       ),
                       Text(
                           "Don't skip design. Learn design and code, by building real apps with Flutter and Swift. Complete courses about the best tools."),
                     ],
                   ),
+                ),
+                const Spacer(
+                  flex: 2,
+                ),
+                AnimatedBtn(
+                  btnAnimationController: _btnAnimationController,
+                  press: () {
+                    _btnAnimationController.isActive = true;
+                  },
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 24),
+                  child: Text(
+                      "Purchase includes access to 30+ courses, 240+ premium tutorials, 120+ hours of videos, source files and certificates."),
                 )
               ],
             ),
