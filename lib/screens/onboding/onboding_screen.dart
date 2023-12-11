@@ -1,5 +1,7 @@
 import 'dart:ui';
+import 'package:animated_app/screens/onboding/components/sign_in_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rive/rive.dart';
 
 import 'components/animated_btn.dart';
@@ -18,7 +20,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void initState() {
     _btnAnimationController = OneShotAnimation(
       "active",
-      autoplay: false,
+      autoplay: true, //false
     );
     super.initState();
   }
@@ -78,6 +80,59 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   btnAnimationController: _btnAnimationController,
                   press: () {
                     _btnAnimationController.isActive = true;
+                    showGeneralDialog(
+                      barrierDismissible: true,
+                      barrierLabel: "Sign In",
+                      context: context,
+                      pageBuilder: (context, _, __) => Center(
+                        child: Container(
+                          height: 620,
+                          margin: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 32,
+                            horizontal: 24,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.94),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(40)),
+                          ),
+                          child: const Scaffold(
+                            backgroundColor: Colors.transparent,
+                            body: Column(
+                              children: [
+                                Text(
+                                  "Sign In",
+                                  style: TextStyle(
+                                      fontSize: 34, fontFamily: "Poppins"),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 16),
+                                  child: Text(
+                                    "Access to 240+ hours of content. Learn design and code, by building real apps with Flutter and Swift.",
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                SignInForm(),
+                                Row(
+                                  children: [
+                                    Expanded(child: Divider()),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 16),
+                                      child: Text(
+                                        "OR",
+                                        style: TextStyle(color: Colors.black26),
+                                      ),
+                                    ),
+                                    Expanded(child: Divider()),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
                   },
                 ),
                 const Padding(
