@@ -25,25 +25,72 @@ class _EntryPointState extends State<EntryPoint> {
             borderRadius: const BorderRadius.all(Radius.circular(24)),
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                height: 36,
-                width: 36,
-                child: RiveAnimation.asset(
-                  "assets/RiveAssets/icons.riv",
-                  artboard: "SEARCH",
-                  onInit: (artboard) {
-                    StateMachineController controller =
-                        RiveUtils.getRiveController(artboard,
-                            stateMachineName: "SEARCH_Interactivity");
-                    searchTigger = controller.findInput("SEARCH") as SMIBool;
-                  },
-                ),
-              )
+              ...List.generate(
+                  bottomNavs.length,
+                  (index) => GestureDetector(
+                        onTap: () {
+                          searchTigger.change(true);
+                        },
+                        child: SizedBox(
+                          height: 36,
+                          width: 36,
+                          child: RiveAnimation.asset(
+                            bottomNavs.first.src,
+                            artboard: "SEARCH",
+                            onInit: (artboard) {
+                              StateMachineController controller =
+                                  RiveUtils.getRiveController(artboard,
+                                      stateMachineName: "SEARCH_Interactivity");
+                              searchTigger =
+                                  controller.findSMI("active") as SMIBool;
+                            },
+                          ),
+                        ),
+                      ))
             ],
           ),
         ),
       ),
     );
   }
+}
+
+class RiveAsset {
+  final String artboard, stateMachineName, title, src;
+  late SMIBool? input;
+
+  RiveAsset(this.src,
+      {required this.artboard,
+      required this.stateMachineName,
+      required this.title,
+      this.input});
+
+  set setInput(SMIBool status) {
+    input = status;
+  }
+
+  List<RiveAsset> bottomNavs = [
+    RiveAsset("assets/RiveAssets/icons.riv",
+        artboard: "CHAT",
+        stateMachineName: "CHAT_Interactivity",
+        title: "Chat"),
+    RiveAsset("assets/RiveAssets/icons.riv",
+        artboard: "SEARCH",
+        stateMachineName: "SEARCH_Interactivity",
+        title: "Search"),
+    RiveAsset("assets/RiveAssets/icons.riv",
+        artboard: "TIMER",
+        stateMachineName: "TIMER_Interactivity",
+        title: "Chat"),
+    RiveAsset("assets/RiveAssets/icons.riv",
+        artboard: "BELL",
+        stateMachineName: "BELL_Interactivity",
+        title: "Notifications"),
+    RiveAsset("assets/RiveAssets/icons.riv",
+        artboard: "USER",
+        stateMachineName: "USER_Interactivity",
+        title: "Profile"),
+  ];
 }
