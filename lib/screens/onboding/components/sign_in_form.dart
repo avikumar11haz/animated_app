@@ -1,3 +1,4 @@
+import 'package:animated_app/entry_point.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -45,7 +46,13 @@ class _SignInFormState extends State<SignInForm> {
           });
 
           confetti.fire();
-          // TODO: navigate
+          Future.delayed(const Duration(seconds: 1), () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const EntryPoint(),
+                ));
+          });
         });
       } else {
         error.fire();
@@ -183,13 +190,13 @@ class CustomPositioned extends StatelessWidget {
     return Positioned.fill(
       child: Column(
         children: [
-          Spacer(),
+          const Spacer(),
           SizedBox(
             height: size,
             width: size,
             child: child,
           ),
-          Spacer(flex: 2),
+          const Spacer(flex: 2),
         ],
       ),
     );
