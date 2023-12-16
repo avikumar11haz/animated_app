@@ -1,3 +1,4 @@
+import 'package:animated_app/components/animated_bar.dart';
 import 'package:animated_app/constants.dart';
 import 'package:animated_app/utils/rive_utils.dart';
 import 'package:flutter/material.dart';
@@ -79,28 +80,7 @@ class _EntryPointState extends State<EntryPoint> {
   }
 }
 
-class AnimatedBar extends StatelessWidget {
-  const AnimatedBar({
-    super.key,
-    required this.isActive,
-  });
 
-  final bool isActive;
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      margin: const EdgeInsets.only(bottom: 2),
-      height: 4,
-      width: isActive ? 20 : 0,
-      decoration: const BoxDecoration(
-        color: Color(0xFF81B4FF),
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-      ),
-    );
-  }
-}
 
 class RiveAsset {
   final String artboard, stateMachineName, title, src;
