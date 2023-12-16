@@ -1,4 +1,4 @@
-import 'package:animated_app/screens/home/home_screen.dart';
+import 'package:animated_app/models/course.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
