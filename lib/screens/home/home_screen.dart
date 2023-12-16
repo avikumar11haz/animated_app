@@ -76,3 +76,15 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+class Course {
+  final String title, description, iconScr;
+  final Color bgColor;
+
+  Course({
+    required this.title,
+    this.description = "Build and animate an iOS app from scratch",
+    this.iconScr = "assets/icons/ios.svg",
+    this.bgColor = const Color(0xFF7553F6),
+  });
+}
