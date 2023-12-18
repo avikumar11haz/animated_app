@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:animated_app/components/info_card.dart';
+import 'package:animated_app/components/side_menu_tile.dart';
 import 'package:flutter/material.dart';
 
 class SideMenu extends StatefulWidget {
@@ -16,17 +17,28 @@ class _SideMenuState extends State<SideMenu> {
         width: 288,
         height: double.infinity,
         color: const Color(0xFF17203A),
-        child: const SafeArea(
+        child: SafeArea(
           child: Column(
-            children: [InfoCard(
-              name: "Avi kumar",
-              profession: "Flutter Developer",
-            )],
+            children: [
+              const InfoCard(
+                name: "Avi kumar",
+                profession: "Flutter Developer",
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 24, top: 32, bottom: 16),
+                child: Text(
+                  "Browse".toUpperCase(),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(color: Colors.white70),
+                ),
+              ),
+              SideMenuTile()
+            ],
           ),
         ),
       ),
     );
   }
 }
-
-
