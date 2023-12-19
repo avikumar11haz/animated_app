@@ -6,9 +6,9 @@ class RiveAsset {
 
   RiveAsset(this.src,
       {required this.artboard,
-        required this.stateMachineName,
-        required this.title,
-        this.input});
+      required this.stateMachineName,
+      required this.title,
+      this.input});
 
   set setInput(SMIBool status) {
     input = status;
@@ -34,4 +34,25 @@ List<RiveAsset> bottomNavs = [
       artboard: "USER",
       stateMachineName: "USER_Interactivity",
       title: "Profile"),
+];
+
+List<RiveAsset> sideMenus = [
+  RiveAsset(
+    "assets/RiveAssets/icons.riv",
+    artboard: "Home",
+    stateMachineName: "HOME_interactivity",
+    title: "Home",
+  ),
+  RiveAsset(
+    "assets/RiveAssets/icons.riv",
+    artboard: "Search",
+    stateMachineName: "SEARCH_interactivity",
+    title: "Search",
+  ),
+  RiveAsset(
+    "assets/RiveAssets/icons.riv",
+    artboard: "LIKE/STAR",
+    stateMachineName: "LIKE_interactivity",
+    title: "Favorites",
+  ),
 ];
