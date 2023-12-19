@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:animated_app/components/animated_bar.dart';
 import 'package:animated_app/components/side_menu.dart';
 import 'package:animated_app/constants.dart';
@@ -69,13 +71,19 @@ class _EntryPointState extends State<EntryPoint>
             height: MediaQuery.of(context).size.height,
             child: const SideMenu(),
           ),
-          Transform.translate(
-            offset: Offset(animation.value * 288, 0),
-            child: Transform.scale(
-              scale: scalAnimation.value,
-              child: const ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(24)),
-                child: HomeScreen(),
+          Transform(
+            alignment: Alignment.center,
+            transform: Matrix4.identity()
+              ..setEntry(3, 2, 0.001)
+              ..rotateY(animation.value - 30 * animation.value * pi / 180),
+            child: Transform.translate(
+              offset: Offset(animation.value * 265, 0),
+              child: Transform.scale(
+                scale: scalAnimation.value,
+                child: const ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(24)),
+                  child: HomeScreen(),
+                ),
               ),
             ),
           ),
