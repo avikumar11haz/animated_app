@@ -21,7 +21,12 @@ class _EntryPointState extends State<EntryPoint> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBody: true,
-      body: const HomeScreen(),
+      body: Stack(
+        children: [
+          const HomeScreen(),
+          MenuBtn()
+        ],
+      ),
       bottomNavigationBar: SafeArea(
         child: Container(
           padding: const EdgeInsets.all(12),
@@ -84,6 +89,5 @@ class _EntryPointState extends State<EntryPoint> {
     );
   }
 }
-
 
 
