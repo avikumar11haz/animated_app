@@ -70,6 +70,27 @@ class _SideMenuState extends State<SideMenu> {
                       .copyWith(color: Colors.white70),
                 ),
               ),
+              ...sideMenu2.map(
+                    (menu) => SideMenuTile(
+                  menu: menu,
+                  riveonInit: (artboard) {
+                    StateMachineController controller =
+                    RiveUtils.getRiveController(artboard,
+                        stateMachineName: menu.stateMachineName);
+                    menu.input = controller.findSMI("active") as SMIBool;
+                  },
+                  press: () {
+                    menu.input!.change(true);
+                    Future.delayed(const Duration(seconds: 1), () {
+                      menu.input!.change(false);
+                    });
+                    setState(() {
+                      selectedMenu = menu;
+                    });
+                  },
+                  isActive: selectedMenu == menu,
+                ),
+              ),
             ],
           ),
         ),

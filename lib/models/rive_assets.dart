@@ -61,6 +61,19 @@ List<RiveAsset> sideMenus = [
     stateMachineName: "CHAT_interactivity",
     title: "Help",
   ),
+];
 
-
+List<RiveAsset> sideMenu2 = [
+  RiveAsset(
+    "assets/RiveAssets/icons.riv",
+    artboard: "TIMER",
+    stateMachineName: "TIMER_interactivity",
+    title: "History",
+  ),
+  RiveAsset(
+    "assets/RiveAssets/icons.riv",
+    artboard: "BELL",
+    stateMachineName: "BELL_interactivity",
+    title: "Notifications",
+  ),
 ];
