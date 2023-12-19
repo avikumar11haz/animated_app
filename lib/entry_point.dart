@@ -1,5 +1,7 @@
 import 'package:animated_app/components/animated_bar.dart';
+import 'package:animated_app/components/side_menu.dart';
 import 'package:animated_app/constants.dart';
+import 'package:animated_app/models/menu_btn.dart';
 import 'package:animated_app/models/rive_assets.dart';
 import 'package:animated_app/screens/home/home_screen.dart';
 import 'package:animated_app/utils/rive_utils.dart';
@@ -15,16 +17,51 @@ class EntryPoint extends StatefulWidget {
 
 class _EntryPointState extends State<EntryPoint> {
   RiveAsset selectedBottomNav = bottomNavs.first;
+  late SMIBool isSideBarClosed;
+
+  bool isSideMenuClosed = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor2,
       resizeToAvoidBottomInset: false,
       extendBody: true,
       body: Stack(
         children: [
-          const HomeScreen(),
-          MenuBtn()
+          AnimatedPositioned(
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.fastOutSlowIn,
+            width: 288,
+            left: isSideMenuClosed ? -288 : 0,
+            height: MediaQuery.of(context).size.height,
+            child: const SideMenu(),
+          ),
+          Transform.translate(
+            offset: Offset(isSideMenuClosed ? 0 : 288, 0),
+            child: Transform.scale(
+              scale: isSideMenuClosed ? 1 : 0.8,
+              child: const ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(24)),
+                child: HomeScreen(),
+              ),
+            ),
+          ),
+          MenuBtn(
+            riveOnInit: (artboard) {
+              StateMachineController controller = RiveUtils.getRiveController(
+                  artboard,
+                  stateMachineName: "State Machine");
+              isSideBarClosed = controller.findSMI("isOpen") as SMIBool;
+              isSideBarClosed.value = true;
+            },
+            press: () {
+              isSideBarClosed.value = !isSideBarClosed.value;
+              setState(() {
+                isSideMenuClosed = isSideBarClosed.value;
+              });
+            },
+          ),
         ],
       ),
       bottomNavigationBar: SafeArea(
@@ -89,5 +126,3 @@ class _EntryPointState extends State<EntryPoint> {
     );
   }
 }
-
-
