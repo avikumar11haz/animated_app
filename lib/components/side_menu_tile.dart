@@ -1,10 +1,20 @@
+import 'package:animated_app/models/rive_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
 class SideMenuTile extends StatelessWidget {
   const SideMenuTile({
+    required this.menu,
+    required this.isActive,
+    required this.press,
+    required this.riveonInit,
     super.key,
   });
+
+  final RiveAsset menu;
+  final VoidCallback press;
+  final ValueChanged<Artboard> riveonInit;
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
@@ -18,19 +28,19 @@ class SideMenuTile extends StatelessWidget {
           ),
         ),
         ListTile(
-          onTap: () {},
+          onTap: press,
           leading: SizedBox(
             height: 34,
             width: 34,
             child: RiveAnimation.asset(
-              "assets/RiveAssets/icons.riv",
-              artboard: "HOME",
-              onInit: (artboard) {},
+              menu.src,
+              artboard: menu.artboard,
+              onInit: riveonInit,
             ),
           ),
-          title: const Text(
-            "Home",
-            style: TextStyle(color: Colors.white),
+          title: Text(
+            menu.title,
+            style: const TextStyle(color: Colors.white),
           ),
         ),
       ],

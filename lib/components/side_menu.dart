@@ -1,5 +1,6 @@
 import 'package:animated_app/components/info_card.dart';
 import 'package:animated_app/components/side_menu_tile.dart';
+import 'package:animated_app/models/rive_assets.dart';
 import 'package:flutter/material.dart';
 
 class SideMenu extends StatefulWidget {
@@ -34,7 +35,14 @@ class _SideMenuState extends State<SideMenu> {
                       .copyWith(color: Colors.white70),
                 ),
               ),
-              SideMenuTile()
+              ...sideMenus.map(
+                (menu) => SideMenuTile(
+                  menu: menu,
+                  riveonInit: (artboard) {},
+                  press: () {},
+                  isActive: false,
+                ),
+              ),
             ],
           ),
         ),

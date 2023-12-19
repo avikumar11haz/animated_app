@@ -39,13 +39,13 @@ List<RiveAsset> bottomNavs = [
 List<RiveAsset> sideMenus = [
   RiveAsset(
     "assets/RiveAssets/icons.riv",
-    artboard: "Home",
+    artboard: "HOME",
     stateMachineName: "HOME_interactivity",
     title: "Home",
   ),
   RiveAsset(
     "assets/RiveAssets/icons.riv",
-    artboard: "Search",
+    artboard: "SEARCH",
     stateMachineName: "SEARCH_interactivity",
     title: "Search",
   ),
