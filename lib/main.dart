@@ -1,5 +1,3 @@
-import 'package:animated_app/components/side_menu.dart';
-import 'package:animated_app/entry_point.dart';
 import 'package:animated_app/screens/onboding/onboding_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -31,16 +29,14 @@ class MyApp extends StatelessWidget {
           errorBorder: defaultInputBorder,
         ),
       ),
-      home: const EntryPoint(),
+      home: const OnboardingScreen(),
     );
   }
 }
 
 const defaultInputBorder = OutlineInputBorder(
-  borderRadius: BorderRadius.all(Radius.circular(16)),
-  borderSide: BorderSide(
-    color: Color(0xFFDEE3F2),
-    width: 1,
-  )
-);
-
+    borderRadius: BorderRadius.all(Radius.circular(16)),
+    borderSide: BorderSide(
+      color: Color(0xFFDEE3F2),
+      width: 1,
+    ));
